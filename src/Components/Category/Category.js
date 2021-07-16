@@ -5,19 +5,6 @@ import { Game } from '../../routes/routes';
 
 function Category() {
     const [ category , setCategory ] = useState();
-
-    // fetch('https://opentdb.com/api_category.php')
-    //     .then(resp => resp.json())
-    //     .then(
-    //         (result) => {
-    //             if (result.trivia_categories) {
-    //                 setCategory(result.trivia_categories)
-    //                 console.log(result)
-    //             } else {
-    //                 setCategory()
-    //             }
-    //         },
-    //     )
     return(
         <div className='main'>
             <form className='container'>
