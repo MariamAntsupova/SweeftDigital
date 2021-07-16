@@ -1,0 +1,39 @@
+.main {
+    height: 100vh;
+    display: flex;
+    .container {
+        border: 1px solid aqua;
+        border-radius: 8px;
+        padding: 18px 14px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        width: 20rem;
+        align-items: center;
+        select {
+            padding: 14px 18px;
+            margin: 20px;
+        }
+        .start {
+            width: 100px;
+            border-radius: 8px;
+            transition: all 0.5s;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            padding: 5px 8px;
+            border: 1px solid aqua;
+            &::after {
+                content: ' \00BB';
+                color: aquamarine;
+                margin-left: 6px;
+                font-size: 16px;
+            }
+            &:hover {
+                opacity: 100%;
+                padding-right: 25px;
+                box-shadow: 5px 5px 5px aquamarine;
+            }
+        }
+    }
+}
