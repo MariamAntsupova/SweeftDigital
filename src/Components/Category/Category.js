@@ -6,8 +6,8 @@ import { Game } from '../../routes/routes';
 
 function Category() {
     const [ categories , setCategories ] = useState([]);
-    let categoryID = 9;
-    let difficultyValue = 'easy' ;
+    const [value , setValue] = useState('easy');
+    const [catid , setCatid] = useState(9);
     useEffect(() =>{
         Axios.get(`https://opentdb.com/api_category.php`)
           .then(res => res.data)
@@ -22,14 +22,15 @@ function Category() {
     },[])
     
     function getSelectedCategory(event) {
-        categoryID = event.target.value;
+        let categoryID = event.target.value;
+        setCatid(categoryID);
         console.log(categoryID);
     }
     function getSelectedDifficulty(event) {
-        difficultyValue = event.target.value;
+        let difficultyValue = event.target.value;
+        setValue(difficultyValue);
         console.log(difficultyValue);
     }
-    console.log(categoryID, difficultyValue);
     return(
         <div className='main'>
             <form className='container'>
@@ -49,7 +50,7 @@ function Category() {
                     <option value="medium">medium</option>
                     <option value="hard">hard</option>
                 </select>
-                <Link to={Game.replace(':category', categoryID).replace(':difficulty' , difficultyValue)} style={{textDecoration: 'none'}}>
+                <Link to={Game.replace(':category', `${catid}`).replace(':difficulty' , `${value}`)} style={{textDecoration: 'none'}}>
                     <button className='start' type='submit'>START</button>
                 </Link>
             </form>
