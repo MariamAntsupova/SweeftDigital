@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import './Quizz.scss'
 import { Filter } from '../../routes/routes';
 import Loader from '../../loader/Loader'
+import { categoryID, difficultyValue } from '../consts/consts';
 function Quizz() {
 
   const [questions, setQuestions] = useState([]);
@@ -15,7 +16,7 @@ function Quizz() {
 
   useEffect(() =>{
     setLoading(true)
-    Axios.get(`https://opentdb.com/api.php?amount=10&category=${categoryID}&difficulty=${difficyltyValue}&type=multiple`)
+    Axios.get(`https://opentdb.com/api.php?amount=10&category=${categoryID}&difficulty=${difficultyValue}&type=multiple`)
       .then(res => res.data)
       .then(data => {
         const questions = data.results.map((question) => ({
@@ -69,7 +70,7 @@ function Quizz() {
         
         </div>
     </Loader>
- 
+
     
   );
 }

@@ -9,7 +9,7 @@ function Questions({handleAnswer,currentQuestion,handleNextQuestion,questionsLen
                     <div className='question-count'>
                         <span>Question {currentQuestion+1}</span>/{questionsLength}
                     </div>
-                    <div className='question-text' >{question}</div>
+                    <div className='question-text' dangerouslySetInnerHTML={{__html:question}} />
                 </div>
                 <div className='answer-section'>
                 {answers.map((answer,idx) => {

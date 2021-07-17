@@ -3,6 +3,8 @@ import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Category.scss';
 import { Game } from '../../routes/routes';
+import { categoryID  , difficultyValue} from '../consts/consts';
+
 function Category() {
     const [ categories , setCategories ] = useState([]);
     useEffect(() =>{
@@ -19,12 +21,12 @@ function Category() {
     },[])
     
     function getSelectedCategory(event) {
-        const categoryID = event.target.value;
+        let categoryID = event.target.value;
         console.log(categoryID);
      }
     function getSelectedDifficulty(event) {
-        const difficyltyValue = event.target.value;
-        console.log(difficyltyValue);
+        let difficultyValue = event.target.value;
+        console.log(difficultyValue);
      }
     
     return(
@@ -42,11 +44,11 @@ function Category() {
                 </select>
                 <select onChange={getSelectedDifficulty}> 
                     <option selected disabled>Select Difficulty:</option>
-                    <option value="easy">easy</option>
+                    <option value="easy">easy</option> 
                     <option value="medium">medium</option>
                     <option value="hard">hard</option>
                 </select>
-                <Link to={Game} style={{textDecoration: 'none'}}>
+                <Link to={Game.replace(':category', categoryID).replace(':difficulty' , difficultyValue)} style={{textDecoration: 'none'}}>
                     <button className='start' type='submit'>START</button>
                 </Link>
             </form>

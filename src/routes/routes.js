@@ -1,2 +1,2 @@
 export const Filter = '/';
-export const Game = '/game';
+export const Game = '/game/:category/:difficulty';
