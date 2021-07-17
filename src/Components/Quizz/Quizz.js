@@ -15,7 +15,7 @@ function Quizz() {
 
   useEffect(() =>{
     setLoading(true)
-    Axios.get(`https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple`)
+    Axios.get(`https://opentdb.com/api.php?amount=10&category=${categoryID}&difficulty=${difficyltyValue}&type=multiple`)
       .then(res => res.data)
       .then(data => {
         const questions = data.results.map((question) => ({
@@ -50,15 +50,15 @@ function Quizz() {
     <Loader isLoading={Loading}>
         <div className="container">
         {currentQuestion >= questions.length ? (
-                        <div className='main'>
-                        <div className='container'>
-            <div className='score-section'>
-                You scored {score} out of {questions.length}
-                <Link to={Filter} style={{textDecoration: 'none'}}>
-                    <button className="start">Tap to restart</button>
-                </Link>
-            </div>
-            </div>
+            <div className='main'>
+              <div className='container'>
+              <div className='score-section'>
+                  You scored {score} out of {questions.length}
+                  <Link to={Filter} style={{textDecoration: 'none'}}>
+                      <button className="start">Tap to restart</button>
+                  </Link>
+              </div>
+              </div>
             </div>
         ): (<Questions   handleAnswer={handleAnswer}
             showScore={showScore}

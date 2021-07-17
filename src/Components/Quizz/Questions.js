@@ -1,6 +1,6 @@
 import React from 'react'
 import './Quizz.scss'
-function Questions({currentQuestion,handleNextQuestion,questionsLength, data:{question, answers}}) {
+function Questions({handleAnswer,currentQuestion,handleNextQuestion,questionsLength, data:{question, answers}}) {
     return (
         <>
             <div className='main'>
@@ -15,8 +15,9 @@ function Questions({currentQuestion,handleNextQuestion,questionsLength, data:{qu
                 {answers.map((answer,idx) => {
                     return(
                         <button
-                        onClick = {handleNextQuestion}
-                        dangerouslySetInnerHTML={{__html:answer}}></button>
+                            onClick = {() => {handleAnswer(answer)}}
+                            dangerouslySetInnerHTML={{__html:answer}}>
+                        </button>
                     )
                 })}
                 </div>
