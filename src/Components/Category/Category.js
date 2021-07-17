@@ -3,10 +3,11 @@ import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Category.scss';
 import { Game } from '../../routes/routes';
-import { categoryID  , difficultyValue} from '../consts/consts';
 
 function Category() {
     const [ categories , setCategories ] = useState([]);
+    let categoryID = 9;
+    let difficultyValue = 'easy' ;
     useEffect(() =>{
         Axios.get(`https://opentdb.com/api_category.php`)
           .then(res => res.data)
@@ -21,14 +22,14 @@ function Category() {
     },[])
     
     function getSelectedCategory(event) {
-        let categoryID = event.target.value;
+        categoryID = event.target.value;
         console.log(categoryID);
-     }
+    }
     function getSelectedDifficulty(event) {
-        let difficultyValue = event.target.value;
+        difficultyValue = event.target.value;
         console.log(difficultyValue);
-     }
-    
+    }
+    console.log(categoryID, difficultyValue);
     return(
         <div className='main'>
             <form className='container'>

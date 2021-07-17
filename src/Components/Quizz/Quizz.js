@@ -1,11 +1,10 @@
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import Questions from './Questions';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Quizz.scss'
 import { Filter } from '../../routes/routes';
 import Loader from '../../loader/Loader'
-import { categoryID, difficultyValue } from '../consts/consts';
 function Quizz() {
 
   const [questions, setQuestions] = useState([]);
@@ -13,10 +12,11 @@ function Quizz() {
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [Loading, setLoading] = useState([]);
+  const { category, difficulty } = useParams();
 
   useEffect(() =>{
     setLoading(true)
-    Axios.get(`https://opentdb.com/api.php?amount=10&category=${categoryID}&difficulty=${difficultyValue}&type=multiple`)
+    Axios.get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`)
       .then(res => res.data)
       .then(data => {
         const questions = data.results.map((question) => ({
