@@ -1,10 +1,36 @@
-import React,{useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Category.scss';
 import { Game } from '../../routes/routes';
 
 function Category() {
-    const [ category , setCategory ] = useState();
+    const [ categories , setCategories ] = useState([]);
+    useEffect(() =>{
+        Axios.get(`https://opentdb.com/api_category.php`)
+          .then(res => res.data)
+          .then(data => {
+            const categories = data.trivia_categories.map((category) => ({
+                id: category.id,
+                name: category.name,
+            }))
+            console.log(categories);
+            setCategories(categories);
+        });
+        Axios.get(`https://opentdb.com/api_difficulty.php`)
+          .then(res => res.data)
+          .then(data => {
+            const categories = data.trivia_categories.map((category) => ({
+                id: category.id,
+                name: category.name,
+            }))
+            console.log(categories);
+            setCategories(categories);
+        });
+    },[])
+    
+
+    
     return(
         <div className='main'>
             <form className='container'>
@@ -12,11 +38,11 @@ function Category() {
 
                 <select>
                     <option value="0">Select Category:</option>
-                    {/* <option>{category}</option> */}
-                    <option value="1">Entertainment</option>
-                    <option value="2">Art</option>
-                    <option value="3">History</option>
-                    <option value="4">Celebrities</option>
+                    {categories.map((cat) => {
+                        return(
+                          <option value={cat.id}>{cat.name}</option>
+                        )
+                    })}
                 </select>
                 <select>
                     <option value="0">Select Difficulty:</option>
